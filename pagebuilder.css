@@ -1,0 +1,27 @@
+.panel-content-element {
+    border: 2px dashed #F2F5F7
+}
+
+.pagebuilder-content-image {
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.panel-pagebuilder-section {
+    border: 2px dashed #777777 !important;
+}
+
+.panel-pagebuilder-section-heading {
+    background:#dddddd !important;
+}
+
+.panel-pagebuilder-image {
+    border: 2px dashed darkseagreen !important;
+}
+
+.panel-pagebuilder-image-heading {
+    background: darkseagreen !important;
+}
