@@ -103,7 +103,7 @@ function set_section_page_name(id, value) {
 }
 
 function delete_section_element(id) {
-    if (confirm("Are you sure to delete this section (this action can't be undone) ?")) {
+    if (confirm("Are you sure to delete this section?\n(this action can't be undone)")) {
         $("#pagebuilder_section_page_" + id).remove();
         return true;
     }
@@ -144,6 +144,10 @@ function add_content_element_page(
 
         case "video":
             html_content_element = set_element_page_video(collapsed, uniqid, data);
+            break;
+
+        case "button":
+            html_content_element = set_element_page_button(collapsed, uniqid, data);
             break;
   
         default:
@@ -243,7 +247,7 @@ function set_element_page_masthead(collapsed, uniqid, data) {
                 html += '</div>';
 
                 html += "<center>";
-                    html += '<span class="btn btn-primary" onclick="add_masthead_item(' + section_page_id + ', ' + uniqid + ');">';
+                    html += '<span class="btn btn-success" onclick="add_masthead_item(' + section_page_id + ', ' + uniqid + ');">';
                         html += '<i class="fa fa-plus-circle"></i>&nbsp; Add Item</span>';
                     html += '</span>';
                 html += "</center>";
@@ -404,6 +408,17 @@ function add_masthead_item(section_page_id, uniqid) {
                     html += '</div>';
                 });
 
+                // STATUS PER ITEM
+                html += '<hr><div class="form-group">';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Item Status<span class="required">*</span></label>';
+                    html += '<div class="col-md-6 col-sm-6 col-xs-12">';
+                        html += '<select name="v_page_element_status_item[' + section_page_id + '][' + uniqid + '][ ' + identifier + ' ]" required="required" class="form-control col-md-7 col-xs-12">';
+                            html += '<option value="1">ACTIVE</option>';
+                            html += '<option value="0">Not Active</option>';
+                        html += '</select>';
+                    html += '</div>';
+                html += '</div>';
+
             html += '</div><!-- /.panel-body -->';
         html += '</div><!-- /.panel-collapse -->';
     html += '</div><!-- /.panel -->';
@@ -416,7 +431,7 @@ function set_masthead_item_name(id, value) {
 }
 
 function delete_masthead_item(id) {
-    if (confirm("Are you sure to delete this masthead item (this action can't be undone) ?")) {
+    if (confirm("Are you sure to delete this masthead item?\n(this action can't be undone)")) {
         $("#pagebuilder_masthead_page_" + id).remove();
         return true;
     }
@@ -612,8 +627,8 @@ function set_element_page_image(collapsed, uniqid, data) {
                 html += '</div>';
 
                 html += "<center>";
-                    html += '<span class="btn btn-primary" onclick="add_image_item(' + section_page_id + ', ' + uniqid + ');">';
-                        html += '<i class="fa fa-plus-circle"></i>&nbsp; Add Image</span>';
+                    html += '<span class="btn btn-success" onclick="add_image_item(' + section_page_id + ', ' + uniqid + ');">';
+                        html += '<i class="fa fa-plus-circle"></i>&nbsp; Add Item</span>';
                     html += '</span>';
                 html += "</center>";
 
@@ -710,6 +725,17 @@ function add_image_item(section_page_id, uniqid) {
                     html += '</div>';
                 html += '</div>';
 
+                // STATUS PER ITEM
+                html += '<hr><div class="form-group">';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Item Status<span class="required">*</span></label>';
+                    html += '<div class="col-md-6 col-sm-6 col-xs-12">';
+                        html += '<select name="v_page_element_status_item[' + section_page_id + '][' + uniqid + '][ ' + identifier + ' ]" required="required" class="form-control col-md-7 col-xs-12">';
+                            html += '<option value="1">ACTIVE</option>';
+                            html += '<option value="0">Not Active</option>';
+                        html += '</select>';
+                    html += '</div>';
+                html += '</div>';
+
             html += '</div><!-- /.panel-body -->';
         html += '</div><!-- /.panel-collapse -->';
     html += '</div><!-- /.panel -->';
@@ -722,7 +748,7 @@ function set_image_item_name(id, value) {
 }
 
 function delete_image_item(id) {
-    if (confirm("Are you sure to delete this image item (this action can't be undone) ?")) {
+    if (confirm("Are you sure to delete this image item?\n(this action can't be undone)")) {
         $("#pagebuilder_image_page_" + id).remove();
         return true;
     }
@@ -1116,3 +1142,193 @@ function show_input_video_text(this_value, identifier) {
     }
 }
 // VIDEO - END
+
+// BUTTON - BEGIN
+function set_element_page_button(collapsed, uniqid, data) {
+    var element_type = "button";
+    var element_type_title = "Button";
+    var section_name = "";
+    var data_image = pagebuilder_no_img;
+    var is_required = 'required="required"';
+    var data_text = "";
+    var text_position_left = "";
+    if (data != "") {
+        section_name = data.section;
+        data_image = decodeURI(data.image);
+        is_required = "";
+        data_text = decodeURI(data.text);
+        if (data.text_position == "left") {
+            text_position_left = "selected";
+        }
+    }
+  
+    var html = '<div class="panel panel-content-element" id="pagebuilder_elm_' + uniqid + '">';
+        html += '<input type="hidden" name="v_page_element_type[' + section_page_id + '][' + uniqid + ']" value="'+element_type+'">';
+  
+    if (collapsed) {
+        html += '<a class="panel-heading" role="tab" data-toggle="collapse" data-parent="' + content_container + '" href="#collapse' + uniqid + '" aria-expanded="false">';
+    } else {
+        html += '<a class="panel-heading" role="tab" data-toggle="collapse" data-parent="' + content_container + '" href="#collapse' + uniqid + '" aria-expanded="true">';
+    }
+            html += '<h4 class="panel-title">'+element_type_title+' - Section <i id=section' + uniqid + ">" + section_name + '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' + uniqid + ')"></i></span></h4>';
+        html += "</a>";
+  
+    if (collapsed) {
+        html += '<div id="collapse' + uniqid + '" class="panel-collapse collapse" role="tabpanel">';
+    } else {
+        html += '<div id="collapse' + uniqid + '" class="panel-collapse collapse in" role="tabpanel">';
+    }
+  
+            html += '<div class="panel-body">';
+
+                // SECTION
+                html += '<div class="form-group">';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Section <span class="required">*</span></label>';
+                    html += '<div class="col-md-6 col-sm-6 col-xs-12">';
+                        html += '<input type="text" autocomplete="off" value="' + section_name + '" name="v_page_element_section[' + section_page_id + '][' + uniqid + ']" required="required" class="form-control col-md-7 col-xs-12" onblur="set_section_name(' + uniqid + ', this.value)">';
+                    html += '</div>';
+                html += '</div>';
+
+                // ALIGNMENT
+                html += '<div class="form-group">';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Alignment <span class="required">*</span></label>';
+                    html += '<div class="col-md-6 col-sm-6 col-xs-12">';
+                        html += '<select name="v_page_element_alignment[' + section_page_id + '][' + uniqid + ']" class="form-control col-md-7 col-xs-12">';
+                            html += '<option value="left">Left</option>';
+                            html += '<option value="center">Center</option>';
+                            html += '<option value="right">Right</option>';
+                        html += "</select>";
+                    html += '</div>';
+                html += '</div>';
+
+                html += "<center>";
+                    html += '<span class="btn btn-success" onclick="add_button_item(' + section_page_id + ', ' + uniqid + ');">';
+                        html += '<i class="fa fa-plus-circle"></i>&nbsp; Add Item</span>';
+                    html += '</span>';
+                html += "</center>";
+
+                html += '<hr><div class="sortable-button" id="list-button-' + uniqid + '"></div>';
+
+                // STATUS
+                html += '<hr><div class="form-group">';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Status<span class="required">*</span></label>';
+                    html += '<div class="col-md-6 col-sm-6 col-xs-12">';
+                        html += '<select name="v_page_element_status[' + section_page_id + '][' + uniqid + ']" required="required" class="form-control col-md-7 col-xs-12">';
+                            html += '<option value="1">ACTIVE</option>';
+                            html += '<option value="0">Not Active</option>';
+                        html += '</select>';
+                    html += '</div>';
+                html += '</div>';
+            
+            html += '</div><!-- /.panel-body -->';
+        html += '</div><!-- /.panel-collapse -->';
+    html += '</div><!-- /.panel -->';
+  
+    return html;
+}
+
+function add_button_item(section_page_id, uniqid) {
+    var identifier = Date.now();
+    var parent_container = '#list-button-'+uniqid;
+    var html ='';
+
+    var is_required = 'required="required"';
+
+    html += '<div class="panel panel-pagebuilder-button" id="pagebuilder_button_page_' + identifier + '">';
+        html += '<a class="panel-heading panel-pagebuilder-button-heading" role="tab" data-toggle="collapse" data-parent="' + parent_container + '" href="#collapse_section_' + identifier + '" aria-expanded="false">';
+            html += '<h4 class="panel-title">Button <i id=v_panel_button_' + identifier + '></i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_button_item(' + identifier + ')"></i></span></h4>';
+        html += '</a>';
+
+        html += '<div id="collapse_section_' + identifier + '" class="panel-collapse collapse" role="tabpanel">';
+            html += '<div class="panel-body">';
+
+                // BUTTON - LABEL
+                html += '<div class="form-group">';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Label <span class="required">*</span></label>';
+                    html += '<div class="col-md-6 col-sm-6 col-xs-12">';
+                        html += '<input type="text" autocomplete="off" value="" name="v_page_element_button_label[' + section_page_id + '][' + uniqid + '][ ' + identifier + ' ]" required="required" class="form-control col-md-7 col-xs-12" onblur="set_button_item_name(' + identifier + ', this.value)">';
+                    html += '</div>';
+                html += '</div>';
+
+                // BUTTON - STYLE
+                html += '<div class="form-group">';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Style <span class="required">*</span></label>';
+                    html += '<div class="col-md-6 col-sm-6 col-xs-12">';
+                        html += '<select name="v_page_element_button_style[' + section_page_id + '][' + uniqid + '][ ' + identifier + ' ]" class="form-control col-md-7 col-xs-12">';
+                            html += '<option value="red">Red</option>';
+                            html += '<option value="grey">Grey</option>';
+                        html += "</select>";
+                    html += '</div>';
+                html += '</div>';
+
+                // BUTTON - LINK TYPE
+                html += '<div class="form-group">';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Link Type <span class="required">*</span></label>';
+                    html += '<div class="col-md-6 col-sm-6 col-xs-12">';
+                        html += '<select name="v_page_element_button_link_type[' + section_page_id + '][' + uniqid + '][ ' + identifier + ' ]" class="form-control col-md-7 col-xs-12" onchange="show_input_link(this.value, \'' + uniqid + identifier + '\')">';
+                            html += '<option value="internal">Internal</option>';
+                            html += '<option value="external">External</option>';
+                        html += "</select>";
+                    html += '</div>';
+                html += '</div>';
+
+                // BUTTON - LINK (INTERNAL)
+                html += '<div class="form-group" id="pagebuilder-link-internal-' + uniqid + identifier + '">';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Link (Internal) <span class="required">*</span></label>';
+                    html += '<div class="col-md-6 col-sm-6 col-xs-12">';
+                        html += '<div class="input-group">';
+                            html += '<span class="input-group-addon">' + pagebuilder_url + '/</span>';
+                            html += '<input type="text" autocomplete="off" value="" name="v_page_element_button_link_internal[' + section_page_id + '][' + uniqid + '][ ' + identifier + ' ]" class="form-control col-md-7 col-xs-12">';
+                        html += '</div>';
+                    html += '</div>';
+                html += '</div>';
+
+                // BUTTON - LINK (EXTERNAL)
+                html += '<div class="form-group" id="pagebuilder-link-external-' + uniqid + identifier + '" style="display:none;">';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Link (External) <span class="required">*</span></label>';
+                    html += '<div class="col-md-6 col-sm-6 col-xs-12">';
+                        html += '<input type="text" autocomplete="off" value="" name="v_page_element_button_link_external[' + section_page_id + '][' + uniqid + '][ ' + identifier + ' ]" class="form-control col-md-7 col-xs-12" placeholder="(sample: https://domain.com/promo-september)">';
+                    html += '</div>';
+                html += '</div>';
+
+                // BUTTON - LINK TARGET
+                html += '<div class="form-group pagebuilder-link-' + uniqid + identifier + '">';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Target <span class="required">*</span></label>';
+                    html += '<div class="col-md-6 col-sm-6 col-xs-12">';
+                        html += '<select name="v_page_element_button_link_target[' + section_page_id + '][' + uniqid + '][ ' + identifier + ' ]" class="form-control col-md-7 col-xs-12">';
+                            html += '<option value="on page">opened on the same page</option>';
+                            html += '<option value="new page">opened in a new page</option>';
+                        html += "</select>";
+                    html += '</div>';
+                html += '</div>';
+
+                // STATUS PER ITEM
+                html += '<hr><div class="form-group">';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Item Status<span class="required">*</span></label>';
+                    html += '<div class="col-md-6 col-sm-6 col-xs-12">';
+                        html += '<select name="v_page_element_status_item[' + section_page_id + '][' + uniqid + '][ ' + identifier + ' ]" required="required" class="form-control col-md-7 col-xs-12">';
+                            html += '<option value="1">ACTIVE</option>';
+                            html += '<option value="0">Not Active</option>';
+                        html += '</select>';
+                    html += '</div>';
+                html += '</div>';
+
+            html += '</div><!-- /.panel-body -->';
+        html += '</div><!-- /.panel-collapse -->';
+    html += '</div><!-- /.panel -->';
+
+    $(parent_container).append(html);
+}
+
+function set_button_item_name(id, value) {
+    $("#v_panel_button_" + id).html(value);
+}
+
+function delete_button_item(id) {
+    if (confirm("Are you sure to delete this button item?\n(this action can't be undone)")) {
+        $("#pagebuilder_button_page_" + id).remove();
+        return true;
+    }
+    return false;
+}
+// BUTTON - END

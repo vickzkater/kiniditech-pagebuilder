@@ -200,7 +200,7 @@ function add_content_element(
 function delete_content_element(id) {
   if (
     confirm(
-      "Are you sure to delete this content (this action can't be undone) ?"
+      "Are you sure to delete this content?\n(this action can't be undone)"
     )
   ) {
     $("#pagebuilder_elm_" + id).remove();
