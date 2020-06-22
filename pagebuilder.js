@@ -21,7 +21,20 @@
  * - Plain Text
  */
 
-var content_container = "#content-pagebuilder";
+// SET CONTENT CONTAINER IN PAGEBUILDER
+if (typeof content_container == "undefined") {
+  var content_container = "#content-pagebuilder";
+}
+
+// SET DEFAULT IMAGE FOR "NO IMAGE" IN PAGEBUILDER
+if (typeof pagebuilder_no_img == "undefined") {
+  var pagebuilder_no_img = "https://kiniditech.com/hosting/no-image.png";
+}
+
+// SET URL INTERNAL IN PAGEBUILDER
+if (typeof pagebuilder_url == "undefined") {
+  var pagebuilder_url = window.location.origin;
+}
 
 $(document).ready(function () {
   initialize_sortable_content(content_container);
