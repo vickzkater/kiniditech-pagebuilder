@@ -12,7 +12,7 @@
  * - TinyMCE (https://www.tiny.cloud/get-tiny/downloads/)
  * - Bootstrap (https://getbootstrap.com/docs/4.3/getting-started/download/)
  *
- * Support Content Elements:
+ * Support Content Elements (Standard):
  * - Text (Rich Text Editor / WYSIWYG HTML Editor)
  * - Image
  * - Image & Text (Rich Text Editor / WYSIWYG HTML Editor)
@@ -36,10 +36,19 @@ if (typeof pagebuilder_url == "undefined") {
   var pagebuilder_url = window.location.origin;
 }
 
-$(document).ready(function () {
-  initialize_sortable_content(content_container);
+// SET PAGEBUILDER MODE
+if (typeof pagebuilder_mode == "undefined") {
+  var pagebuilder_mode = 'standard';
+}
 
-  initialize_tinymce(".text-editor");
+$(document).ready(function () {
+  if (pagebuilder_mode == 'landing page') {
+    initialize_sortable_content_in_page(content_container);
+  } else {
+    // standard
+    initialize_sortable_content(content_container);
+    initialize_tinymce(".text-editor");
+  }
 });
 
 /**
@@ -145,6 +154,9 @@ function initialize_tinymce(elm) {
     ],
     toolbar_sticky: true,
   });
+
+  // HIDE MODAL LOADING
+  $('.modal-content-element-loading').modal('hide');
 }
 
 function add_content_element(
