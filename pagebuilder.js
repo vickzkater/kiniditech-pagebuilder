@@ -12,7 +12,7 @@
  * - TinyMCE (https://www.tiny.cloud/get-tiny/downloads/)
  * - Bootstrap (https://getbootstrap.com/docs/4.3/getting-started/download/)
  *
- * Support Content Elements:
+ * Support Content Elements (Standard):
  * - Text (Rich Text Editor / WYSIWYG HTML Editor)
  * - Image
  * - Image & Text (Rich Text Editor / WYSIWYG HTML Editor)
@@ -21,12 +21,34 @@
  * - Plain Text
  */
 
-var content_container = "#content-pagebuilder";
+// SET CONTENT CONTAINER IN PAGEBUILDER
+if (typeof content_container == "undefined") {
+  var content_container = "#content-pagebuilder";
+}
+
+// SET DEFAULT IMAGE FOR "NO IMAGE" IN PAGEBUILDER
+if (typeof pagebuilder_no_img == "undefined") {
+  var pagebuilder_no_img = "https://kiniditech.com/hosting/no-image.png";
+}
+
+// SET URL INTERNAL IN PAGEBUILDER
+if (typeof pagebuilder_url == "undefined") {
+  var pagebuilder_url = window.location.origin;
+}
+
+// SET PAGEBUILDER MODE
+if (typeof pagebuilder_mode == "undefined") {
+  var pagebuilder_mode = 'standard';
+}
 
 $(document).ready(function () {
-  initialize_sortable_content(content_container);
-
-  initialize_tinymce(".text-editor");
+  if (pagebuilder_mode == 'landing page') {
+    initialize_sortable_content_in_page(content_container);
+  } else {
+    // standard
+    initialize_sortable_content(content_container);
+    initialize_tinymce(".text-editor");
+  }
 });
 
 /**
@@ -132,6 +154,9 @@ function initialize_tinymce(elm) {
     ],
     toolbar_sticky: true,
   });
+
+  // HIDE MODAL LOADING
+  $('.modal-content-element-loading').modal('hide');
 }
 
 function add_content_element(
@@ -200,7 +225,7 @@ function add_content_element(
 function delete_content_element(id) {
   if (
     confirm(
-      "Are you sure to delete this content (this action can't be undone) ?"
+      "Are you sure to delete this content?\n(this action can't be undone)"
     )
   ) {
     $("#pagebuilder_elm_" + id).remove();
@@ -247,11 +272,11 @@ function set_html_text(collapsed, uniqid, data) {
   }
 
   html +=
-    '<h4 class="panel-title">Text - Section <i id=section' +
+    '<h4 class="panel-title"><i class="fa fa-sort"></i>&nbsp; Text - Section <i id=section' +
     uniqid +
     ">" +
     section_name +
-    '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
+    '</i><span class="pull-right"><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
     uniqid +
     ')"></i></span></h4>';
   html += "</a>";
@@ -340,11 +365,11 @@ function set_html_image(collapsed, uniqid, data) {
   }
 
   html +=
-    '<h4 class="panel-title">Image - Section <i id=section' +
+    '<h4 class="panel-title"><i class="fa fa-sort"></i>&nbsp; Image - Section <i id=section' +
     uniqid +
     ">" +
     section_name +
-    '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
+    '</i><span class="pull-right"><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
     uniqid +
     ')"></i></span></h4>';
   html += "</a>";
@@ -439,11 +464,11 @@ function set_html_image_text(collapsed, uniqid, data) {
   }
 
   html +=
-    '<h4 class="panel-title">Image & Text - Section <i id=section' +
+    '<h4 class="panel-title"><i class="fa fa-sort"></i>&nbsp; Image & Text - Section <i id=section' +
     uniqid +
     ">" +
     section_name +
-    '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
+    '</i><span class="pull-right"><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
     uniqid +
     ')"></i></span></h4>';
   html += "</a>";
@@ -553,11 +578,11 @@ function set_html_video(collapsed, uniqid, data) {
   }
 
   html +=
-    '<h4 class="panel-title">Video - Section <i id=section' +
+    '<h4 class="panel-title"><i class="fa fa-sort"></i>&nbsp; Video - Section <i id=section' +
     uniqid +
     ">" +
     section_name +
-    '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
+    '</i><span class="pull-right"><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
     uniqid +
     ')"></i></span></h4>';
   html += "</a>";
@@ -644,11 +669,11 @@ function set_html_video_text(collapsed, uniqid, data) {
   }
 
   html +=
-    '<h4 class="panel-title">Video & Text - Section <i id=section' +
+    '<h4 class="panel-title"><i class="fa fa-sort"></i>&nbsp; Video & Text - Section <i id=section' +
     uniqid +
     ">" +
     section_name +
-    '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
+    '</i><span class="pull-right"><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
     uniqid +
     ')"></i></span></h4>';
   html += "</a>";
@@ -754,11 +779,11 @@ function set_html_plaintext(collapsed, uniqid, data) {
   }
 
   html +=
-    '<h4 class="panel-title">Plain Text - Section <i id=section' +
+    '<h4 class="panel-title"><i class="fa fa-sort"></i>&nbsp; Plain Text - Section <i id=section' +
     uniqid +
     ">" +
     section_name +
-    '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
+    '</i><span class="pull-right"><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
     uniqid +
     ')"></i></span></h4>';
   html += "</a>";
