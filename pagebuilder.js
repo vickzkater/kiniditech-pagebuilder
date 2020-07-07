@@ -1,6 +1,6 @@
 /**
  * PageBuilder (Build pages using content elements)
- * Version: 1.1.2 (2020-06-10)
+ * Version: 1.1.3
  *
  * Copyright (c) KINIDI Tech and other contributors
  * Released under the MIT license.

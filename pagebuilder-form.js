@@ -1,6 +1,6 @@
 /**
  * PageBuilder - Form (Build form pages using content elements)
- * Version: 1.0.0 (2020-06-10)
+ * Version: 1.0.0
  *
  * Copyright (c) KINIDI Tech and other contributors
  * Released under the MIT license.

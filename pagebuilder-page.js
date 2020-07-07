@@ -1,6 +1,6 @@
 /**
  * PageBuilder - Landing Page (Build landing pages using content elements)
- * Version: 1.0.0 (2020-06-10)
+ * Version: 1.0.1
  *
  * Copyright (c) KINIDI Tech and other contributors
  * Released under the MIT license.
@@ -376,6 +376,7 @@ function add_masthead_item(section_page_id, uniqid, identifier = 0, data = "", d
                         html += '<img src="' + v_page_element_image + '" class="pagebuilder-content-image">';
                         html += '<input type="file" name="v_page_element_image[' + section_page_id + '][' + uniqid + '][' + identifier + ']" ' + is_required + ' class="form-control col-md-7 col-xs-12" accept=".jpg, .jpeg, .png" onchange="display_img_input(this, \'before\');" style="margin-top:5px">';
                         html += '<input type="hidden" name="v_page_element_imagex[' + section_page_id + '][' + uniqid + '][' + identifier + ']" value="'+v_page_element_imagex+'">';
+                        html += '<br><span class="infotext">Recommended image size is 1920 x 720 px. Use images with same height if you have multiple images.</span>';
                     html += '</div>';
                 html += '</div>';
 
@@ -386,6 +387,7 @@ function add_masthead_item(section_page_id, uniqid, identifier = 0, data = "", d
                         html += '<img src="' + v_page_element_image_mobile + '" class="pagebuilder-content-image">';
                         html += '<input type="file" name="v_page_element_image_mobile[' + section_page_id + '][' + uniqid + '][' + identifier + ']" ' + is_required + ' class="form-control col-md-7 col-xs-12" accept=".jpg, .jpeg, .png" onchange="display_img_input(this, \'before\');" style="margin-top:5px">';
                         html += '<input type="hidden" name="v_page_element_image_mobilex[' + section_page_id + '][' + uniqid + '][' + identifier + ']" value="'+v_page_element_image_mobilex+'">';
+                        html += '<br><span class="infotext">Recommended image size is 800 x 800 px. Use images with same height if you have multiple images.</span>';
                     html += '</div>';
                 html += '</div>';
 
@@ -643,7 +645,7 @@ function set_element_page_text(collapsed, uniqid, data) {
                     var max_items_text = 3;
                 }
                 html += '<div class="form-group">';
-                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Column <span class="required">*</span></label>';
+                    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">No. of Columns <span class="required">*</span></label>';
                     html += '<div class="col-md-6 col-sm-6 col-xs-12">';
                         html += '<select name="v_page_element_total_item[' + section_page_id + '][' + uniqid + ']" id="v_page_element_total_item' + section_page_id + uniqid + '" class="form-control col-md-7 col-xs-12" required="required" onchange="show_multiple_text(this.value, '+max_items_text+', ' + uniqid + ')">';
                             html += '<option value="" selected disabled>- Please Choose One -</option>';
@@ -851,6 +853,7 @@ function add_image_item(section_page_id, uniqid, identifier = 0, data = "") {
                         html += '<img src="' + v_page_element_image + '" class="pagebuilder-content-image">';
                         html += '<input type="file" name="v_page_element_image[' + section_page_id + '][' + uniqid + '][' + identifier + ']" '+is_required+' class="form-control col-md-7 col-xs-12" accept=".jpg, .jpeg, .png" onchange="display_img_input(this, \'before\');" style="margin-top:5px">';
                         html += '<input type="hidden" name="v_page_element_imagex[' + section_page_id + '][' + uniqid + '][' + identifier + ']" value="'+v_page_element_imagex+'">';
+                        html += '<br><span class="infotext">Recommended image size is 960 x 365 px for Slideshow and 960 x 640 px for Carousel. Use images with same dimensions if you have multiple images.</span>';
                     html += '</div>';
                 html += '</div>';
 
@@ -1067,6 +1070,7 @@ function set_element_page_imagetextbutton(collapsed, uniqid, data) {
                         html += '<img src="' + v_page_element_image + '" class="pagebuilder-content-image">';
                         html += '<input type="file" name="v_page_element_image[' + section_page_id + '][' + uniqid + '][]" class="form-control col-md-7 col-xs-12" accept=".jpg, .jpeg, .png" onchange="display_img_input(this, \'before\');" style="margin-top:5px">';
                         html += '<input type="hidden" name="v_page_element_imagex[' + section_page_id + '][' + uniqid + '][]" value="'+v_page_element_imagex+'">';
+                        html += '<br><span class="infotext">It is recommended to resize your image to 800 px width to ensure best quality with minimum loading time.</span>';
                     html += '</div>';
                 html += '</div>';
 
@@ -1201,6 +1205,7 @@ function set_element_page_imagetextbutton(collapsed, uniqid, data) {
                             html += '<img src="' + v_page_element_image + '" class="pagebuilder-content-image">';
                             html += '<input type="file" name="v_page_element_image[' + section_page_id + '][' + uniqid + '][]" class="form-control col-md-7 col-xs-12" accept=".jpg, .jpeg, .png" onchange="display_img_input(this, \'before\');" style="margin-top:5px">';
                             html += '<input type="hidden" name="v_page_element_imagex[' + section_page_id + '][' + uniqid + '][]" value="'+v_page_element_imagex+'">';
+                            html += '<br><span class="infotext">It is recommended to resize your image to 800 px width to ensure best quality with minimum loading time.</span>';
                         html += '</div>';
                     html += '</div>';
 
@@ -1434,6 +1439,7 @@ function set_element_page_video(collapsed, uniqid, data) {
                     html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">Video Link <span class="required">*</span></label>';
                     html += '<div class="col-md-6 col-sm-6 col-xs-12">';
                         html += '<input type="text" autocomplete="off" value="'+v_page_element_video+'" name="v_page_element_video[' + section_page_id + '][' + uniqid + ']" required="required" placeholder="https://www.youtube.com/watch?v=XXX" class="form-control col-md-7 col-xs-12">';
+                        html += '<br><span class="infotext">Embed a video from YouTube by copying and pasting the link here.</span>';
                     html += '</div>';
                 html += '</div>';
 
