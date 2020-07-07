@@ -1,3 +1,5 @@
+<p align="center"><img src="https://hosting.kiniditech.com/kiniditech-pagebuilder.jpg" width="200" alt="KINDI Tech - PageBuilder"></p>
+
 # PageBuilder (Build pages using content elements)
 
 ## PageBuilder depends on several libraries, such as:
@@ -46,5 +48,5 @@ PageBuilder is open-sourced software built by KINIDI Tech and contributors and l
  - Bootstrap (https://getbootstrap.com/docs/4.3/getting-started/download/)
 
 <p align="center">Brought to you by</p>
-<p align="center"><img src="https://kiniditech.com/hosting/kiniditech_logo.png" width="200" alt="KINDI Tech"></p>
+<p align="center"><img src="https://hosting.kiniditech.com/kiniditech_logo.png" width="200" alt="KINDI Tech"></p>
 <p align="center">KINIDI Tech</p>

@@ -272,11 +272,11 @@ function set_html_text(collapsed, uniqid, data) {
   }
 
   html +=
-    '<h4 class="panel-title">Text - Section <i id=section' +
+    '<h4 class="panel-title"><i class="fa fa-sort"></i>&nbsp; Text - Section <i id=section' +
     uniqid +
     ">" +
     section_name +
-    '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
+    '</i><span class="pull-right"><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
     uniqid +
     ')"></i></span></h4>';
   html += "</a>";
@@ -365,11 +365,11 @@ function set_html_image(collapsed, uniqid, data) {
   }
 
   html +=
-    '<h4 class="panel-title">Image - Section <i id=section' +
+    '<h4 class="panel-title"><i class="fa fa-sort"></i>&nbsp; Image - Section <i id=section' +
     uniqid +
     ">" +
     section_name +
-    '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
+    '</i><span class="pull-right"><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
     uniqid +
     ')"></i></span></h4>';
   html += "</a>";
@@ -464,11 +464,11 @@ function set_html_image_text(collapsed, uniqid, data) {
   }
 
   html +=
-    '<h4 class="panel-title">Image & Text - Section <i id=section' +
+    '<h4 class="panel-title"><i class="fa fa-sort"></i>&nbsp; Image & Text - Section <i id=section' +
     uniqid +
     ">" +
     section_name +
-    '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
+    '</i><span class="pull-right"><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
     uniqid +
     ')"></i></span></h4>';
   html += "</a>";
@@ -578,11 +578,11 @@ function set_html_video(collapsed, uniqid, data) {
   }
 
   html +=
-    '<h4 class="panel-title">Video - Section <i id=section' +
+    '<h4 class="panel-title"><i class="fa fa-sort"></i>&nbsp; Video - Section <i id=section' +
     uniqid +
     ">" +
     section_name +
-    '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
+    '</i><span class="pull-right"><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
     uniqid +
     ')"></i></span></h4>';
   html += "</a>";
@@ -669,11 +669,11 @@ function set_html_video_text(collapsed, uniqid, data) {
   }
 
   html +=
-    '<h4 class="panel-title">Video & Text - Section <i id=section' +
+    '<h4 class="panel-title"><i class="fa fa-sort"></i>&nbsp; Video & Text - Section <i id=section' +
     uniqid +
     ">" +
     section_name +
-    '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
+    '</i><span class="pull-right"><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
     uniqid +
     ')"></i></span></h4>';
   html += "</a>";
@@ -779,11 +779,11 @@ function set_html_plaintext(collapsed, uniqid, data) {
   }
 
   html +=
-    '<h4 class="panel-title">Plain Text - Section <i id=section' +
+    '<h4 class="panel-title"><i class="fa fa-sort"></i>&nbsp; Plain Text - Section <i id=section' +
     uniqid +
     ">" +
     section_name +
-    '</i><span class="pull-right"><i class="fa fa-sort"></i><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
+    '</i><span class="pull-right"><i class="fa fa-trash" style="color:red; margin-left: 20px;" onclick="delete_content_element(' +
     uniqid +
     ')"></i></span></h4>';
   html += "</a>";
